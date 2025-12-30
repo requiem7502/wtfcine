@@ -17,7 +17,7 @@ jobs:
         run: pip install requests moviepy gtts google-generativeai
       - name: Run script
         env:
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.60f6c1e56a6c1778a4e083a3e2d20a22 }}
         run: python main.py
       - name: Upload Video to Socials
         run: python upload_script.py # Script pour publier
