@@ -1,0 +1,23 @@
+name: Daily Movie Short
+on:
+  schedule:
+    - cron: '0 8 * * *' # Tous les jours à 8h00 UTC
+  workflow_dispatch: # Permet de tester manuellement
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install requests moviepy gtts google-generativeai
+      - name: Run script
+        env:
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: python main.py
+      - name: Upload Video to Socials
+        run: python upload_script.py # Script pour publier
